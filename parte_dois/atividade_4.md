@@ -22,8 +22,9 @@ No código:
 x = [1 2 1];
 h = [1 1];
 y = conv(x,h);
-o resultado obtido foi:
 ``` 
+o resultado obtido foi:
+
 
 $$
 y[n]={1,3,3,1}

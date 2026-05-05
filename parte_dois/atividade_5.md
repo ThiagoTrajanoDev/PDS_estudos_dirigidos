@@ -3,13 +3,13 @@
 Considere o sinal discreto de entrada:
 
 $$
-x[n] = \{2,5,4,6,8,7,5,4\}
+x[n] = \{2, 5, 4, 6, 8, 7, 5, 4\}
 $$
 
 e o filtro de média simples:
 
 $$
-h[n] = \frac{1}{3}\{1,1,1\}
+h[n] = \frac{1}{3}\{1, 1, 1\}
 $$
 
 Esse filtro distribui igualmente o peso entre três amostras consecutivas, realizando uma média móvel no sinal.
@@ -29,7 +29,7 @@ Como o filtro possui três coeficientes iguais a $\frac{1}{3}$, cada valor da sa
 Efetuando a convolução, obtém-se:
 
 $$
-y[n] = \left\{0.67,\ 2.33,\ 3.67,\ 5,\ 6,\ 7,\ 6.67,\ 5.33,\ 3,\ 1.33\right\}
+y[n] = \left\{ 0.67, 2.33, 3.67, 5, 6, 7, 6.67, 5.33, 3, 1.33 \right\}
 $$
 
 (Valores aproximados com duas casas decimais.)
@@ -37,13 +37,13 @@ $$
 Percebe-se que a sequência de saída possui comprimento maior que a sequência original, pois na convolução o tamanho final é dado por:
 
 $$
-L_y = L_x + L_h -1
+L_y = L_x + L_h - 1
 $$
 
 Logo:
 
 $$
-L_y = 8 + 3 -1 = 10
+L_y = 8 + 3 - 1 = 10
 $$
 
 ---
@@ -53,7 +53,7 @@ $$
 O sinal original apresenta oscilações entre os valores:
 
 $$
-2,\ 5,\ 4,\ 6,\ 8,\ 7,\ 5,\ 4
+2, 5, 4, 6, 8, 7, 5, 4
 $$
 
 ou seja, existem subidas e descidas relativamente bruscas entre amostras consecutivas.
@@ -61,17 +61,17 @@ ou seja, existem subidas e descidas relativamente bruscas entre amostras consecu
 Após a aplicação do filtro, o gráfico do sinal convoluído mostra a sequência:
 
 $$
-0.67,\ 2.33,\ 3.67,\ 5,\ 6,\ 7,\ 6.67,\ 5.33,\ 3,\ 1.33
+0.67, 2.33, 3.67, 5, 6, 7, 6.67, 5.33, 3, 1.33
 $$
 
 ![](imagens/atividade_5_1.png)
 
 Observa-se visualmente que:
 
-- o crescimento do sinal ocorre de forma gradual;
-- o pico máximo deixa de ser abrupto;
-- a descida também se torna mais suave;
-- desaparecem variações repentinas entre amostras vizinhas.
+- O crescimento do sinal ocorre de forma gradual;
+- O pico máximo deixa de ser abrupto;
+- A descida também se torna mais suave;
+- Desaparecem variações repentinas entre amostras vizinhas.
 
 No gráfico filtrado, a curva discreta assume um comportamento mais contínuo e menos irregular do que no sinal original.
 
@@ -84,7 +84,7 @@ Isso mostra que a convolução reduziu as flutuações instantâneas do sensor.
 O filtro:
 
 $$
-h[n] = \frac{1}{3}\{1,1,1\}
+h[n] = \frac{1}{3}\{1, 1, 1\}
 $$
 
 é chamado de filtro de média móvel porque calcula, em cada ponto, a média aritmética de três amostras consecutivas.
@@ -95,13 +95,11 @@ Por exemplo, se existir um valor muito alto ou muito baixo em determinada posiç
 
 Assim:
 
-- picos são reduzidos;
-- vales são elevados;
-- transições bruscas tornam-se mais lentas.
+- Picos são reduzidos;
+- Vales são elevados;
+- Transições bruscas tornam-se mais lentas.
 
 Matematicamente, o filtro distribui a energia do sinal entre amostras próximas, reduzindo variações rápidas de alta frequência.
-
-Fisicamente, isso corresponde a um processo de suavização ou amortecimento, muito utilizado em sinais de sensores para remover ruídos e tornar a leitura mais estável.
 
 ---
 
@@ -110,9 +108,7 @@ Fisicamente, isso corresponde a um processo de suavização ou amortecimento, mu
 A convolução com o filtro de média simples produziu um novo sinal:
 
 $$
-\{0.67,\ 2.33,\ 3.67,\ 5,\ 6,\ 7,\ 6.67,\ 5.33,\ 3,\ 1.33\}
+\{0.67, 2.33, 3.67, 5, 6, 7, 6.67, 5.33, 3, 1.33\}
 $$
 
 Esse sinal apresenta mudanças mais graduais que o sinal original, comprovando que o filtro atua como suavizador.
-
-Portanto, a média móvel faz com que o sistema reduza oscilações repentinas e forneça uma representação mais estável e contínua do comportamento do sensor.
