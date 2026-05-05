@@ -29,7 +29,7 @@ Como o filtro possui três coeficientes iguais a $\frac{1}{3}$, cada valor da sa
 Efetuando a convolução, obtém-se:
 
 $$
-y[n] = \left\{ 0.67, 2.33, 3.67, 5, 6, 7, 6.67, 5.33, 3, 1.33 \right\}
+y[n] = \left{ 0.67, 2.33, 3.67, 5, 6, 7, 6.67, 5.33, 3, 1.33 \right}
 $$
 
 (Valores aproximados com duas casas decimais.)
