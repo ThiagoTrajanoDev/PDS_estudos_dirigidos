@@ -1,0 +1,30 @@
+### 1. Conceito de Filtro Digital
+Um filtro digital é um sistema computacional linear e invariante no tempo (LTI) que opera sobre uma sequência de números (sinal discreto) com o objetivo de modificar seletivamente o seu conteúdo espectral. Diferente dos filtros analógicos, que dependem de componentes físicos como indutores e capacitores para moldar a corrente elétrica, os filtros digitais realizam essa tarefa por meio de operações matemáticas — essencialmente somas, multiplicações e atrasos temporais.  Fisicamente, filtrar um sinal no domínio digital significa alterar a amplitude e a fase de suas componentes de frequência. Se um sinal de instrumentação industrial possui uma oscilação lenta desejada misturada a um ruído de alta frequência induzido pela rede elétrica, o filtro digital atua recalculando cada amostra de saída como uma média ponderada das amostras atuais e passadas, suavizando as transições abruptas e eliminando a interferência. 
+
+### 2. Diferenças entre Filtros FIR e IIR
+Os filtros digitais são divididos em duas grandes classes com base na natureza de sua resposta ao impulso:  
+- Filtros FIR (Finite Impulse Response - Resposta ao Impulso Finita): Possuem uma estrutura não-recursiva, o que significa que a saída atual depende exclusivamente das amostras atuais e passadas do sinal de entrada. Fisicamente, se aplicarmos um único pulso unitário na entrada, o sinal decai para zero de forma absoluta após um número finito de passos. Eles são inerentemente estáveis e podem ser projetados para ter fase perfeitamente linear. O revés é que, para obter transições abruptas entre as bandas, exige-se uma ordem de filtro muito elevada (mais coeficientes), aumentando o processamento.  
+- Filtros IIR (Infinite Impulse Response - Resposta ao Impulso Infinita): Utilizam realimentação (estruturas recursivas), onde a saída atual depende tanto das entradas quanto das saídas anteriores. Devido a esse loop de feedback, um único pulso na entrada gera uma resposta que se prolonga infinitamente no tempo, atenuando-se gradualmente (em sistemas estáveis). A grande vantagem física é a eficiência: com poucos coeficientes (ordens menores), o IIR consegue uma seletividade espectral excelente. Contudo, eles podem se tornar instáveis e introduzem distorções de fase não-lineares.  
+
+### 3. Resposta em Frequência e Resposta de Fase
+A Resposta em Frequência é a representação matemática e gráfica de como o filtro altera o sinal no domínio da frequência, sendo composta por duas partes: a magnitude e a fase.
+
+- A Magnitude dita o ganho do sistema para cada frequência. Em um filtro passa-baixas ideal, as frequências abaixo do corte recebem ganho um (são mantidas) e as acima recebem ganho zero (são eliminadas). Na realidade física, existem regiões de transição onde o ganho cai suavemente.
+- A Resposta de Fase descreve o deslocamento temporal ou angular que cada componente senoidal sofre ao atravessar o filtro. Quando dizemos que um filtro possui fase linear, significa que todas as frequências sofrem exatamente o mesmo atraso de tempo ao passar pelo sistema. Fisicamente, a fase linear é crucial em processamento de áudio de alta fidelidade ou na transmissão de dados binários, pois garante que o formato original da onda não seja distorcido (mantendo a integridade temporal do pulso).  
+
+### 4. Atraso de Grupo (Group Delay)
+O atraso de grupo é definido matematicamente como a derivada negativa da fase em relação à frequência ($-\frac{d\theta(\omega)}{d\omega}$). Em termos práticos e físicos, ele mede o tempo real que o "envelope" de um pacote de ondas (um grupo de frequências próximas) leva para atravessar o filtro.  
+Se um filtro tem fase linear, seu atraso de grupo é uma constante, indicando que todas as frequências são atrasadas de forma idêntica. Em contrapartida, filtros IIR possuem atraso de grupo variável, o que significa que frequências graves podem sair do filtro antes ou depois das frequências agudas. Em sistemas de telecomunicações digitais, um atraso de grupo não-constante causa dispersão temporal dos pulsos, gerando interferência intersimbólica e corrompendo a recepção dos dados.
+
+### 5. Estabilidade de Filtros Digitais
+A estabilidade de um filtro digital LTI é determinada pela posição de seus polos no plano complexo $Z$. Um polo representa uma frequência complexa na qual o ganho do sistema tende ao infinito.  
+- Para que um filtro digital seja estável, todos os seus polos devem estar localizados estritamente dentro do círculo unitário ($|z| < 1$) no plano $Z$
+- Os filtros FIR são intrinsecamente estáveis porque sua função de transferência possui apenas polos na origem ($z=0$), impedindo qualquer divergência.  
+- Já os filtros IIR exigem extremo cuidado no projeto. Se um polo se deslocar para fora do círculo unitário (devido a erros de arredondamento numérico em precisão finita de microcontroladores, por exemplo), qualquer oscilação mínima ou ruído na entrada fará com que a saída cresça exponencialmente até saturar o sistema, inutilizando a filtragem.
+
+### 6. Aplicações Práticas de Filtros Digitais
+
+Os filtros digitais fundamentam a engenharia moderna devido à flexibilidade de reprogramação sem alteração de hardware.  
+- Condicionamento de Sensores: Em sistemas agrícolas ou industriais, sensores de vazão ou temperatura frequentemente sofrem com vibrações mecânicas ou ruídos induzidos. Filtros passa-baixas digitais suavizam essas leituras ruidosas, garantindo medições estáveis para os algoritmos de decisão.
+- Processamento de Áudio: Equalizadores utilizam bancos de filtros passa-faixa e rejeita-faixa para atenuar frequências indesejadas (como zumbidos de microfonia) ou realçar instrumentos específicos.  
+- Telecomunicações e TinyML: Em dispositivos de Internet das Coisas (IoT) e inteligência artificial embarcada, filtros realizam a decimação e o pré-processamento de sinais biológicos ou de áudio antes que algoritmos de aprendizado de máquina classifiquem o evento, reduzindo drasticamente o custo computacional exigido.  
